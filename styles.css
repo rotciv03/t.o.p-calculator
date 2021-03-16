@@ -1,0 +1,121 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.calculator {
+  background: black;
+  width: 450px;
+  height: 600px;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    "display display display display"
+    "clear neg del div"
+    "seven eight nine mult"
+    "four five six minus"
+    "one two three add"
+    "zero zero period equal";
+}
+.item {
+  color: white;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+}
+.display {
+  grid-area: display;
+  justify-content: flex-end;
+  font-size: 60px;
+}
+.clear {
+  grid-area: clear;
+}
+.neg {
+  grid-area: neg;
+}
+.del {
+  grid-area: del;
+}
+.div {
+  grid-area: div;
+}
+.seven {
+  grid-area: seven;
+}
+.eight {
+  grid-area: eight;
+}
+.nine {
+  grid-area: nine;
+}
+.mult {
+  grid-area: mult;
+}
+.four {
+  grid-area: four;
+}
+.five {
+  grid-area: five;
+}
+.six {
+  grid-area: six;
+}
+.minus {
+  grid-area: minus;
+}
+.one {
+  grid-area: one;
+}
+.two {
+  grid-area: two;
+}
+.three {
+  grid-area: three;
+}
+.add {
+  grid-area: add;
+}
+
+.zero {
+  grid-area: zero;
+}
+.period {
+  grid-area: period;
+}
+.equal {
+  grid-area: equal;
+}
+
+.clear,
+.neg,
+.del {
+  background: rgb(83, 81, 85);
+}
+.div,
+.mult,
+.minus,
+.add,
+.equal {
+  background: rgb(255, 159, 12);
+}
+.one,
+.two,
+.three,
+.four,
+.five,
+.six,
+.seven,
+.eight,
+.nine,
+.zero,
+.period {
+  background: rgb(111, 110, 113);
+}
