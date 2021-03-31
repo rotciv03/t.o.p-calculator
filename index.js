@@ -8,6 +8,7 @@ let minus = document.getElementById("min");
 let operations = document.querySelectorAll(".operation");
 let operationsArr = Array.from(operations);
 let equal = document.querySelector(".equal");
+let period = document.getElementById("period");
 
 let data = {
   operation: "",
@@ -62,12 +63,17 @@ function divNums(num1, num2) {
 }
 
 function equalFn() {
+  if (getDisplayVal() === "") return;
   data.num2 = getDisplayVal();
+  if (data.num2 === "") {
+    console.log("cant divide by 0");
+    return;
+  }
   if (data.num1 === "") {
     data.num1 = 0;
   }
-  operate(data.operation, parseInt(data.num1), parseInt(data.num2));
-  populateDisplay(data.lastTot);
+  operate(data.operation, parseFloat(data.num1), parseFloat(data.num2));
+  populateDisplay(parseFloat(data.lastTot));
 }
 
 function getDisplayVal() {
@@ -76,13 +82,16 @@ function getDisplayVal() {
   return display.textContent;
 }
 function populateDisplay(val) {
-  return (display.textContent = val);
+  display.textContent = val;
 }
 
 numArr.forEach((el) => {
   el.addEventListener("click", function (e) {
     let disVal = getDisplayVal();
-    display.innerHTML = disVal === 0 ? el.textContent : disVal + el.textContent;
+
+    populateDisplay(
+      disVal === 0 || disVal === "" ? el.textContent : disVal + el.textContent
+    );
   });
 });
 
@@ -95,7 +104,7 @@ clear.addEventListener("click", (e) => {
 });
 
 opp.addEventListener("click", (e) => {
-  let value = parseInt(getDisplayVal());
+  let value = parseFloat(getDisplayVal());
   data.lastTot = value < 0 ? value * -1 : value * -1;
   populateDisplay(data.lastTot);
 });
@@ -112,4 +121,13 @@ del.addEventListener("click", (e) => {
 });
 equal.addEventListener("click", (e) => {
   equalFn();
+});
+
+period.addEventListener("click", (e) => {
+  if (getDisplayVal().includes(".")) return;
+  if (getDisplayVal() === "") {
+    populateDisplay(`0.`);
+  } else {
+    populateDisplay(getDisplayVal() + ".");
+  }
 });
